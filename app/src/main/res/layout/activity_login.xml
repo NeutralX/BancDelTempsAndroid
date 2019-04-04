@@ -10,8 +10,8 @@
 		tools:context=".LoginActivity" >
 
 	<ImageView
-			android:layout_marginTop="100dp"
-			android:layout_marginBottom="50dp"
+			android:layout_marginTop="80dp"
+			android:layout_marginBottom="30dp"
 			android:layout_width="150dp"
 			android:layout_height="150dp" app:srcCompat="@drawable/icon_banctemps" android:id="@+id/imageViewIcon" />
 
@@ -26,7 +26,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="Email"
-				android:layout_margin="20dp"/>
+				android:layout_margin="20dp"
+				android:inputType="textEmailAddress" />
 	</android.support.design.widget.TextInputLayout>
 
 	<android.support.design.widget.TextInputLayout
@@ -39,10 +40,27 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:hint="Password"
-				android:layout_margin="20dp"/>
+				android:layout_margin="20dp" android:inputType="textPassword" />
 	</android.support.design.widget.TextInputLayout>
 	<Button
 			android:text="Login"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content" android:id="@+id/buttonLogin" />
+	<LinearLayout
+			android:orientation="horizontal"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent" >
+		<TextView
+				android:layout_marginTop="10dp"
+				android:text="New to Banc Del Temps? "
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/textViewNewHere" android:layout_weight="1"
+				android:textAlignment="textEnd" />
+		<TextView
+				android:layout_marginTop="10dp"
+				android:text="Register here"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/textViewRegister" android:layout_weight="1"
+				android:textColor="@color/colorPrimaryDark" android:clickable="true" />
+	</LinearLayout >
 </LinearLayout >
