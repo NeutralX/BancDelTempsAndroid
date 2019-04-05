@@ -1,16 +1,16 @@
 package com.example.f0x.bancdeltemps.interfaces;
 
 
+import com.example.f0x.bancdeltemps.classes.User;
+import com.example.f0x.bancdeltemps.responses.ResponseLogin;
 import retrofit2.Call;
 import retrofit2.http.*;
 
 public interface ApiBancTempsInterfaces {
 
-//    @FormUrlEncoded
-//    @POST("auth/login")
-//    Call<ResponseLogin> doLogin(@Field("email") String email,
-//                                @Field("password") String password);
-//
+    @POST("userLoginPost")
+    Call<ResponseLogin> doLogin(@Body User user);
+
 //    @GET("averia/lista")
 //    Call<ResponseLlistatAveries> getAverias(@Query("X-API-KEY") String key);
 //

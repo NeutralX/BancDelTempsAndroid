@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BancDelTemps</string>
+    <string name="API_baseurl" >http://172.16.12.12:45455/api/</string >
 </resources>
