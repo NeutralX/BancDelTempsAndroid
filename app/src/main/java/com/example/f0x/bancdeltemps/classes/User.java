@@ -1,10 +1,9 @@
-package com.example.f0x.bancdeltemps.responses;
+package com.example.f0x.bancdeltemps.classes;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseRegistre {
+public class User {
 
     @SerializedName("$id")
     @Expose
@@ -39,18 +38,12 @@ public class ResponseRegistre {
     @SerializedName("picture_path")
     @Expose
     private String picturePath;
-    @SerializedName("bans")
-    @Expose
-    private List<Object> bans = null;
-    @SerializedName("posts")
-    @Expose
-    private List<Object> posts = null;
 
     /**
      * No args constructor for use in serialization
      *
      */
-    public ResponseRegistre() {
+    public User() {
     }
 
     /**
@@ -58,18 +51,16 @@ public class ResponseRegistre {
      * @param dateOfBirth
      * @param lastName
      * @param picturePath
-     * @param bans
      * @param email
      * @param timeHours
      * @param registerDate
      * @param name
-     * @param posts
      * @param gender
      * @param idUser
      * @param password
      * @param $id
      */
-    public ResponseRegistre(String $id, Integer idUser, String name, String lastName, String email, String registerDate, Integer timeHours, String password, String dateOfBirth, String gender, String picturePath, List<Object> bans, List<Object> posts) {
+    public User(String $id, Integer idUser, String name, String lastName, String email, String registerDate, Integer timeHours, String password, String dateOfBirth, String gender, String picturePath) {
         super();
         this.$id = $id;
         this.idUser = idUser;
@@ -82,9 +73,13 @@ public class ResponseRegistre {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.picturePath = picturePath;
-        this.bans = bans;
-        this.posts = posts;
     }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
 
     public String get$id() {
         return $id;
@@ -94,7 +89,7 @@ public class ResponseRegistre {
         this.$id = $id;
     }
 
-    public ResponseRegistre with$id(String $id) {
+    public User with$id(String $id) {
         this.$id = $id;
         return this;
     }
@@ -107,7 +102,7 @@ public class ResponseRegistre {
         this.idUser = idUser;
     }
 
-    public ResponseRegistre withIdUser(Integer idUser) {
+    public User withIdUser(Integer idUser) {
         this.idUser = idUser;
         return this;
     }
@@ -120,7 +115,7 @@ public class ResponseRegistre {
         this.name = name;
     }
 
-    public ResponseRegistre withName(String name) {
+    public User withName(String name) {
         this.name = name;
         return this;
     }
@@ -133,7 +128,7 @@ public class ResponseRegistre {
         this.lastName = lastName;
     }
 
-    public ResponseRegistre withLastName(String lastName) {
+    public User withLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -146,7 +141,7 @@ public class ResponseRegistre {
         this.email = email;
     }
 
-    public ResponseRegistre withEmail(String email) {
+    public User withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -159,7 +154,7 @@ public class ResponseRegistre {
         this.registerDate = registerDate;
     }
 
-    public ResponseRegistre withRegisterDate(String registerDate) {
+    public User withRegisterDate(String registerDate) {
         this.registerDate = registerDate;
         return this;
     }
@@ -172,7 +167,7 @@ public class ResponseRegistre {
         this.timeHours = timeHours;
     }
 
-    public ResponseRegistre withTimeHours(Integer timeHours) {
+    public User withTimeHours(Integer timeHours) {
         this.timeHours = timeHours;
         return this;
     }
@@ -185,7 +180,7 @@ public class ResponseRegistre {
         this.password = password;
     }
 
-    public ResponseRegistre withPassword(String password) {
+    public User withPassword(String password) {
         this.password = password;
         return this;
     }
@@ -198,7 +193,7 @@ public class ResponseRegistre {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ResponseRegistre withDateOfBirth(String dateOfBirth) {
+    public User withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
@@ -211,7 +206,7 @@ public class ResponseRegistre {
         this.gender = gender;
     }
 
-    public ResponseRegistre withGender(String gender) {
+    public User withGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -224,34 +219,8 @@ public class ResponseRegistre {
         this.picturePath = picturePath;
     }
 
-    public ResponseRegistre withPicturePath(String picturePath) {
+    public User withPicturePath(String picturePath) {
         this.picturePath = picturePath;
-        return this;
-    }
-
-    public List<Object> getBans() {
-        return bans;
-    }
-
-    public void setBans(List<Object> bans) {
-        this.bans = bans;
-    }
-
-    public ResponseRegistre withBans(List<Object> bans) {
-        this.bans = bans;
-        return this;
-    }
-
-    public List<Object> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(List<Object> posts) {
-        this.posts = posts;
-    }
-
-    public ResponseRegistre withPosts(List<Object> posts) {
-        this.posts = posts;
         return this;
     }
 

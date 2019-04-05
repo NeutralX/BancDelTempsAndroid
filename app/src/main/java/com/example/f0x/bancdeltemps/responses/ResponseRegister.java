@@ -3,7 +3,7 @@ package com.example.f0x.bancdeltemps.responses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseLogin {
+public class ResponseRegister {
 
     @SerializedName("$id")
     @Expose
@@ -43,7 +43,7 @@ public class ResponseLogin {
      * No args constructor for use in serialization
      *
      */
-    public ResponseLogin() {
+    public ResponseRegister() {
     }
 
     /**
@@ -60,7 +60,7 @@ public class ResponseLogin {
      * @param password
      * @param $id
      */
-    public ResponseLogin(String $id, Integer idUser, String name, String lastName, String email, String registerDate, Integer timeHours, String password, String dateOfBirth, String gender, String picturePath) {
+    public ResponseRegister(String $id, Integer idUser, String name, String lastName, String email, String registerDate, Integer timeHours, String password, String dateOfBirth, String gender, String picturePath) {
         super();
         this.$id = $id;
         this.idUser = idUser;
@@ -83,7 +83,7 @@ public class ResponseLogin {
         this.$id = $id;
     }
 
-    public ResponseLogin with$id(String $id) {
+    public ResponseRegister with$id(String $id) {
         this.$id = $id;
         return this;
     }
@@ -96,7 +96,7 @@ public class ResponseLogin {
         this.idUser = idUser;
     }
 
-    public ResponseLogin withIdUser(Integer idUser) {
+    public ResponseRegister withIdUser(Integer idUser) {
         this.idUser = idUser;
         return this;
     }
@@ -109,7 +109,7 @@ public class ResponseLogin {
         this.name = name;
     }
 
-    public ResponseLogin withName(String name) {
+    public ResponseRegister withName(String name) {
         this.name = name;
         return this;
     }
@@ -122,7 +122,7 @@ public class ResponseLogin {
         this.lastName = lastName;
     }
 
-    public ResponseLogin withLastName(String lastName) {
+    public ResponseRegister withLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -135,7 +135,7 @@ public class ResponseLogin {
         this.email = email;
     }
 
-    public ResponseLogin withEmail(String email) {
+    public ResponseRegister withEmail(String email) {
         this.email = email;
         return this;
     }
@@ -148,7 +148,7 @@ public class ResponseLogin {
         this.registerDate = registerDate;
     }
 
-    public ResponseLogin withRegisterDate(String registerDate) {
+    public ResponseRegister withRegisterDate(String registerDate) {
         this.registerDate = registerDate;
         return this;
     }
@@ -161,7 +161,7 @@ public class ResponseLogin {
         this.timeHours = timeHours;
     }
 
-    public ResponseLogin withTimeHours(Integer timeHours) {
+    public ResponseRegister withTimeHours(Integer timeHours) {
         this.timeHours = timeHours;
         return this;
     }
@@ -174,7 +174,7 @@ public class ResponseLogin {
         this.password = password;
     }
 
-    public ResponseLogin withPassword(String password) {
+    public ResponseRegister withPassword(String password) {
         this.password = password;
         return this;
     }
@@ -187,7 +187,7 @@ public class ResponseLogin {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ResponseLogin withDateOfBirth(String dateOfBirth) {
+    public ResponseRegister withDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
         return this;
     }
@@ -200,7 +200,7 @@ public class ResponseLogin {
         this.gender = gender;
     }
 
-    public ResponseLogin withGender(String gender) {
+    public ResponseRegister withGender(String gender) {
         this.gender = gender;
         return this;
     }
@@ -213,7 +213,7 @@ public class ResponseLogin {
         this.picturePath = picturePath;
     }
 
-    public ResponseLogin withPicturePath(String picturePath) {
+    public ResponseRegister withPicturePath(String picturePath) {
         this.picturePath = picturePath;
         return this;
     }
