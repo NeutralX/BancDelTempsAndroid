@@ -1,7 +1,9 @@
 package com.example.f0x.bancdeltemps;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -24,6 +26,7 @@ import java.net.HttpURLConnection;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextMail, editTextPassword;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         editTextMail = findViewById(R.id.editTextLoginEmail);
         editTextPassword = findViewById(R.id.editTextLoginPassword);
 
+        sharedPref = this.getSharedPreferences("prefs",MODE_PRIVATE);
+        String email = sharedPref.getString("userEmail", "");
+        editTextMail.setText(email);
     }
 
 
@@ -58,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                     if (response.code()== HttpURLConnection.HTTP_OK && response.body() != null){
                         Toast.makeText(LoginActivity.this, "Login OK "+response.body().getName(), Toast.LENGTH_SHORT).show();
+                        sharedPref.edit().putString("userEmail",editTextMail.getText().toString()).apply();
                         Intent main = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(main);
                     } else {

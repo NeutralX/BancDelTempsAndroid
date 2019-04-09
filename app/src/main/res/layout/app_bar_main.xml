@@ -36,12 +36,17 @@
 
 
 	</LinearLayout >
-	<android.support.design.widget.FloatingActionButton
-			android:id="@+id/fab"
+
+	<ru.dimorinny.floatingtextbutton.FloatingTextButton
+			android:id="@+id/action_button"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_gravity="bottom|end"
-			android:layout_margin="@dimen/fab_margin"
-			app:srcCompat="@android:drawable/ic_dialog_email" />
+			android:layout_gravity="bottom|center"
+			app:floating_background_color="@color/colorPrimary"
+			app:floating_left_icon="@android:drawable/ic_dialog_email"
+			app:floating_title="Crear Post"
+			app:floating_title_color="@android:color/white"
+			android:layout_marginBottom="10dp"
+	/>
 
 </android.support.design.widget.CoordinatorLayout >
