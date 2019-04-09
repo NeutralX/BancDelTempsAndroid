@@ -80,6 +80,18 @@ public class User {
         this.password = password;
     }
 
+    public User(String name, String lastName, String email, String registerDate, Integer timeHours,
+                String password, String dateOfBirth, String gender, String picturePath) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.registerDate = registerDate;
+        this.timeHours = timeHours;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.picturePath = picturePath;
+    }
 
     public String get$id() {
         return $id;

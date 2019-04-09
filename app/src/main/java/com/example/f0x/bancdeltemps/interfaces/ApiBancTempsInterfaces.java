@@ -3,6 +3,7 @@ package com.example.f0x.bancdeltemps.interfaces;
 
 import com.example.f0x.bancdeltemps.classes.User;
 import com.example.f0x.bancdeltemps.responses.ResponseLogin;
+import com.example.f0x.bancdeltemps.responses.ResponseRegister;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -10,6 +11,10 @@ public interface ApiBancTempsInterfaces {
 
     @POST("userLoginPost")
     Call<ResponseLogin> doLogin(@Body User user);
+
+    @POST("user")
+    Call<ResponseRegister> doRegistre(@Body User user);
+
 
 //    @GET("averia/lista")
 //    Call<ResponseLlistatAveries> getAverias(@Query("X-API-KEY") String key);

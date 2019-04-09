@@ -31,7 +31,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:id="@+id/editTextName"
+                        android:id="@+id/editTextRegisterName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Name"
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:id="@+id/editTextLastName"
+                        android:id="@+id/editTextRegisterLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Last name"
@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:id="@+id/editTextEmail"
+                        android:id="@+id/editTextRegisterEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content">
 
                 <EditText
-                        android:id="@+id/editTextPassword"
+                        android:id="@+id/editTextRegisterPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Password"
@@ -84,25 +84,36 @@
                     android:layout_height="80dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:id="@+id/spinnerRegistre"/>
+                    android:id="@+id/spinnerRegister"
+                    android:entries="@array/array_gender"/>
+            <TextView
+                    android:text="Date of birth"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:textSize="20dp"
+                    android:gravity="center"/>
             <CalendarView
                     android:layout_width="293dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:id="@+id/calendarViewRegistre"/>
+                    android:id="@+id/calendarViewRegister"/>
             <Button
-                    android:id="@+id/buttonOkRegistre"
+                    android:id="@+id/buttonOkRegister"
                     android:layout_width="226dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Register"/>
+                    android:text="Register"
+                    android:onClick="doRegister"/>
 
             <Button
-                    android:id="@+id/buttonCancelRegistre"
+                    android:id="@+id/buttonCancelRegister"
                     android:layout_width="226dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Cancel"/>
+                    android:text="Cancel"
+                    android:layout_marginBottom="30dp"
+                    android:onClick="goLogin"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
