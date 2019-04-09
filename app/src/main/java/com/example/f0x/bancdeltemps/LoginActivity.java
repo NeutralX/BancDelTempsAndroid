@@ -24,7 +24,6 @@ import java.net.HttpURLConnection;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextMail, editTextPassword;
-    private static final int MY_PERMISSIONS_REQUEST_INTERNET = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
