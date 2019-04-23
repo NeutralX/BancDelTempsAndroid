@@ -60,7 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             int dayOfMonth) {
 
                 try {
-                    String provDate = (month + "-" + dayOfMonth + "-" + year);
+                    String provDate = (dayOfMonth + "-" + month + "-" + year);
                     dateOfBirthDATE = formatw.parse(provDate);
                 } catch (ParseException e) {
                     e.printStackTrace();
