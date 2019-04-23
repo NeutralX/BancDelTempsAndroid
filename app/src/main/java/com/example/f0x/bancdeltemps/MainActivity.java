@@ -40,11 +40,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
-//                            case R.id.nav_products:
-//                                if(fragment == null) fragment =  new MainFragment();
-//                                fragment = fragment;
-//                                fragmentTransaction = true;
-//                                break;
+                            case R.id.nav_posts:
+                                if(fragment == null) fragment =  new PostsFragment();
+                                fragmentTransaction = true;
+                                break;
                         }
 
                         if(fragmentTransaction) {
