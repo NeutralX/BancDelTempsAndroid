@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.example.f0x.bancdeltemps.classes.Post;
 
 import java.util.List;
 
