@@ -1,5 +1,6 @@
 package com.example.f0x.bancdeltemps.classes;
 
+import com.example.f0x.bancdeltemps.classes.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -13,7 +14,7 @@ public class Post {
     private User user;
     @SerializedName("id_Post")
     @Expose
-    private Integer idPost;
+    private long idPost;
     @SerializedName("date_created")
     @Expose
     private String dateCreated;
@@ -31,16 +32,16 @@ public class Post {
     private String title;
     @SerializedName("userId_User")
     @Expose
-    private Integer userIdUser;
+    private long userIdUser;
     @SerializedName("category_Id_Category")
     @Expose
-    private Integer categoryIdCategory;
+    private long categoryIdCategory;
     @SerializedName("active")
     @Expose
-    private Boolean active;
+    private boolean active;
     @SerializedName("hours")
     @Expose
-    private Integer hours;
+    private long hours;
 
     /**
      * No args constructor for use in serialization
@@ -64,7 +65,7 @@ public class Post {
      * @param user
      * @param $id
      */
-    public Post(String $id, User user, Integer idPost, String dateCreated, String dateFinished, String description, String location, String title, Integer userIdUser, Integer categoryIdCategory, Boolean active, Integer hours) {
+    public Post(String $id, User user, long idPost, String dateCreated, String dateFinished, String description, String location, String title, long userIdUser, long categoryIdCategory, boolean active, long hours) {
         super();
         this.$id = $id;
         this.user = user;
@@ -106,15 +107,15 @@ public class Post {
         return this;
     }
 
-    public Integer getIdPost() {
+    public long getIdPost() {
         return idPost;
     }
 
-    public void setIdPost(Integer idPost) {
+    public void setIdPost(long idPost) {
         this.idPost = idPost;
     }
 
-    public Post withIdPost(Integer idPost) {
+    public Post withIdPost(long idPost) {
         this.idPost = idPost;
         return this;
     }
@@ -184,54 +185,54 @@ public class Post {
         return this;
     }
 
-    public Integer getUserIdUser() {
+    public long getUserIdUser() {
         return userIdUser;
     }
 
-    public void setUserIdUser(Integer userIdUser) {
+    public void setUserIdUser(long userIdUser) {
         this.userIdUser = userIdUser;
     }
 
-    public Post withUserIdUser(Integer userIdUser) {
+    public Post withUserIdUser(long userIdUser) {
         this.userIdUser = userIdUser;
         return this;
     }
 
-    public Integer getCategoryIdCategory() {
+    public long getCategoryIdCategory() {
         return categoryIdCategory;
     }
 
-    public void setCategoryIdCategory(Integer categoryIdCategory) {
+    public void setCategoryIdCategory(long categoryIdCategory) {
         this.categoryIdCategory = categoryIdCategory;
     }
 
-    public Post withCategoryIdCategory(Integer categoryIdCategory) {
+    public Post withCategoryIdCategory(long categoryIdCategory) {
         this.categoryIdCategory = categoryIdCategory;
         return this;
     }
 
-    public Boolean getActive() {
+    public boolean isActive() {
         return active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public Post withActive(Boolean active) {
+    public Post withActive(boolean active) {
         this.active = active;
         return this;
     }
 
-    public Integer getHours() {
+    public long getHours() {
         return hours;
     }
 
-    public void setHours(Integer hours) {
+    public void setHours(long hours) {
         this.hours = hours;
     }
 
-    public Post withHours(Integer hours) {
+    public Post withHours(long hours) {
         this.hours = hours;
         return this;
     }

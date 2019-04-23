@@ -2,6 +2,7 @@ package com.example.f0x.bancdeltemps.interfaces;
 
 
 import com.example.f0x.bancdeltemps.classes.User;
+import com.example.f0x.bancdeltemps.responses.ResponseGetPosts;
 import com.example.f0x.bancdeltemps.responses.ResponseLogin;
 import com.example.f0x.bancdeltemps.responses.ResponseRegister;
 import retrofit2.Call;
@@ -15,10 +16,9 @@ public interface ApiBancTempsInterfaces {
     @POST("user")
     Call<ResponseRegister> doRegistre(@Body User user);
 
+    @GET("posts")
+    Call<ResponseGetPosts> getPosts();
 
-//    @GET("averia/lista")
-//    Call<ResponseLlistatAveries> getAverias(@Query("X-API-KEY") String key);
-//
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);
 //

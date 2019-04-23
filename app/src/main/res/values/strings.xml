@@ -9,5 +9,9 @@
     <string name="nav_header_title" >Android Studio</string >
     <string name="nav_header_subtitle" >Ir a \'Mi perfil\'</string >
 
-
+    <string-array name="array_gender">
+        <item>Home</item>
+        <item>Dóna</item>
+        <item>Sense especificar</item>
+    </string-array>
 </resources >
