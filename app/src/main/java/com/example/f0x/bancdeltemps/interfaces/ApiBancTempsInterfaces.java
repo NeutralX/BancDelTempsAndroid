@@ -16,8 +16,11 @@ public interface ApiBancTempsInterfaces {
     @POST("user")
     Call<ResponseRegister> doRegistre(@Body User user);
 
-    @GET("posts")
+    @GET("postsAnd")
     Call<ResponseGetPosts> getPosts();
+
+    @GET("postsTitleAnd")
+    Call<ResponseGetPosts> getPostsTitle (@Query("title") String title);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

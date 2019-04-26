@@ -58,7 +58,7 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     @Override
     public void onBindViewHolder(PostViewHolder postViewHolder, int i) {
         postViewHolder.Title.setText(posts.get(i).getTitle());
-
+        //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
 
     }

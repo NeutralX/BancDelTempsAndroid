@@ -1,12 +1,13 @@
 package com.example.f0x.bancdeltemps;
 
+import android.app.SearchManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
+import android.view.*;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
@@ -17,8 +18,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 import java.net.HttpURLConnection;
 import java.util.List;
+
+import static android.content.Context.SEARCH_SERVICE;
 
 
 public class PostsFragment extends Fragment {
@@ -47,6 +51,8 @@ public class PostsFragment extends Fragment {
         //Si el tamany del RecyclerView no canvia:
         rvPosts.setHasFixedSize(true);
 
+        setHasOptionsMenu(true);
+
         // Sempre s'ah de definir un LayoutManager per poder donar un comportament d'expansió al RecyclerView.
         // Es pot definir un LayoutManager propi o fer servir les subclasses ja predefinides. Per exemple LinearLayoutManager o GridViewLayoutManager
         // que emulen el comportament dels bàsics.
@@ -54,11 +60,46 @@ public class PostsFragment extends Fragment {
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 1);
         rvPosts.setLayoutManager(layoutManager);
 
-        getPosts(view);
+        getPosts(view, null);
         return view;
     }
 
-    public void getPosts(View view) {
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_fragment_posts, menu);
+        final MenuItem search = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) search.getActionView();
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                getPosts(null, query);
+                if( ! searchView.isIconified()) {
+                    searchView.setIconified(true);
+                }
+                search.collapseActionView();
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        //if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+        return false;
+    }
+
+    public void getPosts(View view, String search) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.API_baseurl))
@@ -66,8 +107,9 @@ public class PostsFragment extends Fragment {
                 .build();
 
         ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
-
-        Call<ResponseGetPosts> peticioLlistatPosts = apiService.getPosts();
+        Call<ResponseGetPosts> peticioLlistatPosts = null;
+        if(search == null){ peticioLlistatPosts = apiService.getPosts();}
+        else {peticioLlistatPosts = apiService.getPostsTitle(search);}
 
         peticioLlistatPosts.enqueue(new Callback<ResponseGetPosts>() {
 
