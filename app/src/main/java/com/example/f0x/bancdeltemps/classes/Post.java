@@ -4,8 +4,10 @@ import com.example.f0x.bancdeltemps.classes.User;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 
-public class Post {
+
+public class Post implements Serializable {
 
     @SerializedName("$id")
     @Expose

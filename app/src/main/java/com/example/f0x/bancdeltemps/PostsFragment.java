@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.*;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
@@ -78,13 +80,46 @@ public class PostsFragment extends Fragment {
                 if( ! searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
-                search.collapseActionView();
+                //search.collapseActionView();
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String s) {
                 // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
+                    getPosts(null, s);
                 return false;
+            }
+        });
+        ImageView closeButton = (ImageView)searchView.findViewById(R.id.search_close_btn);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                EditText et = (EditText) searchView.findViewById(R.id.search_src_text);
+
+                //Clear the text from EditText view
+                et.setText("");
+
+                //Clear query
+                searchView.setQuery("", false);
+                //Collapse the action view
+                searchView.onActionViewCollapsed();
+                //Collapse the search widget
+                search.collapseActionView();
+                getPosts(null,null);
+            }
+        });
+        search.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                getPosts(null,null);
+                return true;
             }
         });
     }
@@ -119,7 +154,7 @@ public class PostsFragment extends Fragment {
                 if (response.code()== HttpURLConnection.HTTP_OK){
 
                     List<Post> posts = response.body().getPosts();
-                    RVPostsAdapter postsAdapter = new RVPostsAdapter(posts);
+                    RVPostsAdapter postsAdapter = new RVPostsAdapter(getContext(),posts);
 
                     rvPosts.setAdapter(postsAdapter);
 

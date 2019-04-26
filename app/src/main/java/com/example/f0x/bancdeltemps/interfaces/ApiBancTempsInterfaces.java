@@ -19,8 +19,8 @@ public interface ApiBancTempsInterfaces {
     @GET("postsAnd")
     Call<ResponseGetPosts> getPosts();
 
-    @GET("postsTitleAnd")
-    Call<ResponseGetPosts> getPostsTitle (@Query("title") String title);
+    @GET("postsTitleAnd/{title}")
+    Call<ResponseGetPosts> getPostsTitle (@Path("title") String title);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

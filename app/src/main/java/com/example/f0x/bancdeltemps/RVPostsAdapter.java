@@ -1,5 +1,7 @@
 package com.example.f0x.bancdeltemps;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -29,10 +31,13 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     }
 
     //Constructor
+    public static final String EXTRA_POST = "com.f0x.banctemps.POST";
     List<Post> posts;
+    Context mContext;
 
-    public RVPostsAdapter(List<Post> posts){
+    public RVPostsAdapter(Context mContext, List<Post> posts){
         this.posts = posts;
+        this.mContext = mContext;
     }
 
     //S'han de sobreescriure tres mètodes abstractes a ReccylerView.Adapter:
@@ -56,8 +61,16 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     //3: onBindViewHolder especifica el contingut de cada element del RV. Aquesta funció és molt similar al
     //getView del adapter del ListView. Aquí és on fiquem els valors al nom, edat i foto de cada CardView.
     @Override
-    public void onBindViewHolder(PostViewHolder postViewHolder, int i) {
+    public void onBindViewHolder(PostViewHolder postViewHolder, final int i) {
         postViewHolder.Title.setText(posts.get(i).getTitle());
+        postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(mContext, DetallPost.class);
+                intent.putExtra(EXTRA_POST, posts.get(i));
+                mContext.startActivity(intent);
+            }
+        });
         //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
 
