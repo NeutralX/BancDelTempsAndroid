@@ -1,8 +1,14 @@
 package com.example.f0x.bancdeltemps;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
@@ -23,13 +29,39 @@ public class DetallPost extends AppCompatActivity {
         descPost = (TextView) findViewById(R.id.textViewDetallDesc);
         userName = (TextView) findViewById(R.id.textViewDetallName);
 
+        descPost.setMovementMethod(new ScrollingMovementMethod());
+
         postRebut = (Post) getIntent().getSerializableExtra(EXTRA_POST);
 
         datePost.setText(postRebut.getDateCreated());
         locationPost.setText(postRebut.getLocation());
         titlePost.setText(postRebut.getTitle());
         descPost.setText(postRebut.getDescription());
-        userName.setText(postRebut.getUser().getName() + postRebut.getUser().getLastName());
+        userName.setText(postRebut.getUser().getName() + " " + postRebut.getUser().getLastName());
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void enviarEmail(View v){
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"));
+        emailIntent.putExtra(android.content.Intent.EXTRA_EMAIL, new String[] {
+                postRebut.getUser().getEmail() });
+        emailIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject");
+        emailIntent.putExtra(android.content.Intent.EXTRA_TEXT, "Message");
+        startActivity(Intent.createChooser(emailIntent, "Choose an email client from..."));
     }
 }
