@@ -15,6 +15,7 @@ import android.support.v7.widget.SearchView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+import com.example.f0x.bancdeltemps.classes.User;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 if(fragment == null) fragment =  new PostsFragment();
                                 fragmentTransaction = true;
                                 break;
+                            case R.id.nav_pacts:
+                                if(fragment == null) fragment =  new PactsFragment();
+                                fragmentTransaction = true;
                         }
 
                         if(fragmentTransaction) {

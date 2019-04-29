@@ -24,7 +24,7 @@ public interface ApiBancTempsInterfaces {
     Call<ResponseGetPosts> getPostsTitle (@Path("title") String title);
 
     @GET("pactsAnd/{id}")
-    Call<ResponseGetPacts> getPacts(@Path("id")String id);
+    Call<ResponseGetPacts> getPacts(@Path("id")int id);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

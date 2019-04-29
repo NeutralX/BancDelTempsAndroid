@@ -1,5 +1,6 @@
 package com.example.f0x.bancdeltemps;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,20 +20,22 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
     public static class PactViewHolder extends RecyclerView.ViewHolder {
         CardView cv;
         TextView Title;
+        TextView Date;
         ImageView CategoryImage;
 
         PactViewHolder(View itemView) {
             super(itemView);
             cv = itemView.findViewById(R.id.cardViewIdPacts);
             Title = itemView.findViewById(R.id.titlePacts);
+            Date = itemView.findViewById(R.id.datePacts);
             CategoryImage = itemView.findViewById(R.id.imageCategoryPacts);
         }
     }
 
     //Constructor
     List<Pact> pacts;
-
-    public RVPactsAdapter(List<Pact> pacts){
+    Context mContext;
+    public RVPactsAdapter(Context mContext,List<Pact> pacts){
         this.pacts = pacts;
     }
 
@@ -59,6 +62,7 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
     @Override
     public void onBindViewHolder(PactViewHolder postViewHolder, int i) {
         postViewHolder.Title.setText(pacts.get(i).getTitle());
+        postViewHolder.Date.setText(pacts.get(i).getDateCreated());
         //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
 
