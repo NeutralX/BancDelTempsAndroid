@@ -27,6 +27,8 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText editTextMail, editTextPassword;
     SharedPreferences sharedPref;
+    static int Id_User;
+    public static final String EXTRA_USER = "com.f0x.banctemps.USER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextMail = findViewById(R.id.editTextLoginEmail);
         editTextPassword = findViewById(R.id.editTextLoginPassword);
 
-        sharedPref = this.getSharedPreferences("prefs",MODE_PRIVATE);
+        sharedPref = this.getSharedPreferences("prefs", MODE_PRIVATE);
         String email = sharedPref.getString("userEmail", "");
         editTextMail.setText(email);
     }
@@ -62,27 +64,31 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
-                    if (response.code()== HttpURLConnection.HTTP_OK && response.body() != null){
-                        Toast.makeText(LoginActivity.this, "Login OK "+response.body().getName(), Toast.LENGTH_SHORT).show();
-                        sharedPref.edit().putString("userEmail",editTextMail.getText().toString()).apply();
+                    if (response.code() == HttpURLConnection.HTTP_OK && response.body() != null) {
+                        Toast.makeText(LoginActivity.this, "Login OK " + response.body().getName(), Toast.LENGTH_SHORT).show();
+                        sharedPref.edit().putString("userEmail", editTextMail.getText().toString()).apply();
+                        Id_User = response.body().getIdUser();
+                        User u = new User(response.body());
                         Intent main = new Intent(LoginActivity.this, MainActivity.class);
+                        main.putExtra(Intent.EXTRA_USER, u);
                         startActivity(main);
                     } else {
                         Toast.makeText(LoginActivity.this, "Wrong user/password ", Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<ResponseLogin> call, Throwable t) {
                     Toast.makeText(LoginActivity.this, "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
                 }
             });
 
-        } else{
+        } else {
             Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void goRegister(View v){
+    public void goRegister(View v) {
         Intent main = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(main);
     }
