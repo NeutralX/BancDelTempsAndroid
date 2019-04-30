@@ -1,5 +1,6 @@
 package com.example.f0x.bancdeltemps.classes;
 
+import com.example.f0x.bancdeltemps.responses.ResponseLogin;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -93,6 +94,18 @@ public class User implements Serializable {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.picturePath = picturePath;
+    }
+    public User(ResponseLogin responseLogin){
+        this.idUser = responseLogin.getIdUser();
+        this.name = responseLogin.getName();
+        this.lastName = responseLogin.getLastName();
+        this.email = responseLogin.getEmail();
+        this.registerDate = responseLogin.getRegisterDate();
+        this.timeHours = responseLogin.getTimeHours();
+        this.password = responseLogin.getPassword();
+        this.dateOfBirth = responseLogin.getDateOfBirth();
+        this.gender = responseLogin.getGender();
+        this.picturePath = responseLogin.getPicturePath();
     }
 
     public String get$id() {
