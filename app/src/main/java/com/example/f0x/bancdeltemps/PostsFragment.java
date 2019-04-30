@@ -135,7 +135,6 @@ public class PostsFragment extends Fragment {
     }
 
     public void getPosts(View view, String search) {
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.API_baseurl))
                 .addConverterFactory(GsonConverterFactory.create())

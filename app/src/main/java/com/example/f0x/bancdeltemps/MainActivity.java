@@ -1,25 +1,18 @@
 package com.example.f0x.bancdeltemps;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.SearchView;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.User;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -73,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 if(fragment == null) fragment =  new PactsFragment();
                                 fragmentTransaction = true;
                             case R.id.nav_options:
-                                if(fragment == null) fragment =  new Test();
+                                if(fragment == null) fragment =  new PactsMainFragment();
                                 fragmentTransaction = true;
                         }
 
