@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             case R.id.nav_pacts:
                                 if(fragment == null) fragment =  new PactsFragment();
                                 fragmentTransaction = true;
+                            case R.id.nav_options:
+                                if(fragment == null) fragment =  new Test();
+                                fragmentTransaction = true;
                         }
 
                         if(fragmentTransaction) {
