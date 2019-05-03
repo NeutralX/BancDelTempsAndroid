@@ -17,7 +17,7 @@ import com.example.f0x.bancdeltemps.classes.User;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static User GLOBARL_User;
+    public static User GLOBAL_User;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        GLOBARL_User = (User) getIntent().getSerializableExtra(Intent.EXTRA_USER);
+        GLOBAL_User = (User) getIntent().getSerializableExtra(Intent.EXTRA_USER);
 
 
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         View headerView = navigationView.getHeaderView(0);
         TextView fullnameNav = (TextView) headerView.findViewById(R.id.textFullNameNav);
-        fullnameNav.setText(GLOBARL_User.getName() + " " + GLOBARL_User.getLastName());
+        fullnameNav.setText(GLOBAL_User.getName() + " " + GLOBAL_User.getLastName());
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

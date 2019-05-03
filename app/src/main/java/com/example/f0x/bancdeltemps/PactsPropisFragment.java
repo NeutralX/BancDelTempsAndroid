@@ -26,12 +26,12 @@ import static android.content.Context.SEARCH_SERVICE;
 import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 
 @SuppressWarnings("Duplicates")
-public class PactsFragment extends Fragment {
+public class PactsPropisFragment extends Fragment {
 
     List<Pact> pacts;
     RecyclerView rvPacts;
 
-    public PactsFragment() {
+    public PactsPropisFragment() {
         // Required empty public constructor
     }
 
@@ -135,7 +135,6 @@ public class PactsFragment extends Fragment {
     }
 
     public void getPacts(View view, String search) {
-        Toast.makeText(getContext(), "ss" + GLOBAL_User.getIdUser(), Toast.LENGTH_SHORT).show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.API_baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
@@ -144,7 +143,7 @@ public class PactsFragment extends Fragment {
         ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
         Call<ResponseGetPacts> peticioLlistatPacts = null;
         if (search == null) {
-            peticioLlistatPacts = apiService.getPacts(GLOBAL_User.getIdUser());
+            peticioLlistatPacts = apiService.getPactsByUser(GLOBAL_User.getIdUser());
         }
 
         peticioLlistatPacts.enqueue(new Callback<ResponseGetPacts>() {

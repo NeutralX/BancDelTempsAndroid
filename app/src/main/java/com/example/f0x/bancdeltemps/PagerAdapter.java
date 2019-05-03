@@ -20,14 +20,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                PostsFragment tab1 = new PostsFragment();
+                PostsPropisFragment tab1 = new PostsPropisFragment();
                 return tab1;
             case 1:
-                PostsFragment tab2 = new PostsFragment();
+                PactsPropisFragment tab2 = new PactsPropisFragment();
                 return tab2;
-            case 2:
-                PostsFragment tab3 = new PostsFragment();
-                return tab3;
             default:
                 return null;
         }

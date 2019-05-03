@@ -7,10 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
+
+import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private FragmentTabHost mTabHost;
+    private TextView tvName,tvEmail,tvHours;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +27,17 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        tvName = (TextView) findViewById(R.id.textViewProfileName);
+        tvEmail = (TextView) findViewById(R.id.textViewProfileEmail);
+        tvHours = (TextView) findViewById(R.id.textViewProfileHours);
+
+        tvName.setText(GLOBAL_User.getName() + " " + GLOBAL_User.getLastName());
+        tvEmail.setText(GLOBAL_User.getEmail());
+        tvHours.setText("Hours: " + GLOBAL_User.getTimeHours());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Posts"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pacts"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

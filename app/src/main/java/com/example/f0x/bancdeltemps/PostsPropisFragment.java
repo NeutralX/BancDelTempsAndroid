@@ -10,9 +10,9 @@ import android.view.*;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import com.example.f0x.bancdeltemps.classes.Pact;
+import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
-import com.example.f0x.bancdeltemps.responses.ResponseGetPacts;
+import com.example.f0x.bancdeltemps.responses.ResponseGetPosts;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -25,13 +25,14 @@ import java.util.List;
 import static android.content.Context.SEARCH_SERVICE;
 import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 
-@SuppressWarnings("Duplicates")
-public class PactsFragment extends Fragment {
 
-    List<Pact> pacts;
-    RecyclerView rvPacts;
 
-    public PactsFragment() {
+public class PostsPropisFragment extends Fragment {
+
+    List<Post> posts;
+    RecyclerView rvPosts;
+
+    public PostsPropisFragment() {
         // Required empty public constructor
     }
 
@@ -45,12 +46,12 @@ public class PactsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_pacts, container, false);
+        View view = inflater.inflate(R.layout.fragment_posts, container, false);
         // Inflate the layout for this fragment
-        rvPacts = (RecyclerView) view.findViewById(R.id.RecViewPacts);
+        rvPosts = (RecyclerView) view.findViewById(R.id.RecViewPosts);
 
         //Si el tamany del RecyclerView no canvia:
-        rvPacts.setHasFixedSize(true);
+        rvPosts.setHasFixedSize(true);
 
         setHasOptionsMenu(true);
 
@@ -59,15 +60,15 @@ public class PactsFragment extends Fragment {
         // que emulen el comportament dels bàsics.
 
         GridLayoutManager layoutManager = new GridLayoutManager(this.getContext(), 1);
-        rvPacts.setLayoutManager(layoutManager);
+        rvPosts.setLayoutManager(layoutManager);
 
-        getPacts(view, null);
+        getPosts(view, null);
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_fragment_pacts, menu);
+        inflater.inflate(R.menu.menu_fragment_posts, menu);
         final MenuItem search = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) search.getActionView();
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(SEARCH_SERVICE);
@@ -75,22 +76,21 @@ public class PactsFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                getPacts(null, query);
-                if (!searchView.isIconified()) {
+                getPosts(null, query);
+                if( ! searchView.isIconified()) {
                     searchView.setIconified(true);
                 }
                 //search.collapseActionView();
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String s) {
                 // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
-                getPacts(null, s);
+                    getPosts(null, s);
                 return false;
             }
         });
-        ImageView closeButton = (ImageView) searchView.findViewById(R.id.search_close_btn);
+        ImageView closeButton = (ImageView)searchView.findViewById(R.id.search_close_btn);
         closeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -106,7 +106,7 @@ public class PactsFragment extends Fragment {
                 searchView.onActionViewCollapsed();
                 //Collapse the search widget
                 search.collapseActionView();
-                getPacts(null, null);
+                getPosts(null,null);
             }
         });
         search.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
@@ -118,7 +118,7 @@ public class PactsFragment extends Fragment {
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                getPacts(null, null);
+                getPosts(null,null);
                 return true;
             }
         });
@@ -134,39 +134,36 @@ public class PactsFragment extends Fragment {
         return false;
     }
 
-    public void getPacts(View view, String search) {
-        Toast.makeText(getContext(), "ss" + GLOBAL_User.getIdUser(), Toast.LENGTH_SHORT).show();
+    public void getPosts(View view, String search) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.API_baseurl))
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
-        Call<ResponseGetPacts> peticioLlistatPacts = null;
-        if (search == null) {
-            peticioLlistatPacts = apiService.getPacts(GLOBAL_User.getIdUser());
-        }
+        Call<ResponseGetPosts> peticioLlistatPosts = null;
+        if(search == null){ peticioLlistatPosts = apiService.getPostsByUser(GLOBAL_User.getIdUser());}
+        else {peticioLlistatPosts = apiService.getPostsTitle(search);}
 
-        peticioLlistatPacts.enqueue(new Callback<ResponseGetPacts>() {
+        peticioLlistatPosts.enqueue(new Callback<ResponseGetPosts>() {
 
 
             @Override
-            public void onResponse(Call<ResponseGetPacts> call, Response<ResponseGetPacts> response) {
-                if (response.code() == HttpURLConnection.HTTP_OK) {
+            public void onResponse(Call<ResponseGetPosts> call, Response<ResponseGetPosts> response) {
+                if (response.code()== HttpURLConnection.HTTP_OK){
 
-                    List<Pact> posts = response.body().getPacts();
-                    RVPactsAdapter postsAdapter = new RVPactsAdapter(getContext(), posts);
+                    List<Post> posts = response.body().getPosts();
+                    RVPostsAdapter postsAdapter = new RVPostsAdapter(getContext(),posts);
 
-                    rvPacts.setAdapter(postsAdapter);
+                    rvPosts.setAdapter(postsAdapter);
 
                     postsAdapter.notifyDataSetChanged();
 
                 }
             }
-
             // Si peta la connexió a Internet.
             @Override
-            public void onFailure(Call<ResponseGetPacts> call, Throwable t) {
+            public void onFailure(Call<ResponseGetPosts> call, Throwable t) {
                 Toast.makeText(getActivity(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
             }
         });

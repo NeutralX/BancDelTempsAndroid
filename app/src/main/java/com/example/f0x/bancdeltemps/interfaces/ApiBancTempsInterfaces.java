@@ -20,6 +20,12 @@ public interface ApiBancTempsInterfaces {
     @GET("postsAnd")
     Call<ResponseGetPosts> getPosts();
 
+    @GET("postsUserAnd/{filtre}")
+    Call<ResponseGetPosts> getPostsByUser(@Path("filtre")int filtre);
+
+    @GET("pactsUserAnd/{userId}")
+    Call<ResponseGetPacts> getPactsByUser(@Path("userId")int userId);
+
     @GET("postsTitleAnd/{title}")
     Call<ResponseGetPosts> getPostsTitle (@Path("title") String title);
 
