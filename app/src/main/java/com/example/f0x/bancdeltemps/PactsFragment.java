@@ -135,7 +135,6 @@ public class PactsFragment extends Fragment {
     }
 
     public void getPacts(View view, String search) {
-        Toast.makeText(getContext(), "ss" + GLOBAL_User.getIdUser(), Toast.LENGTH_SHORT).show();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(getString(R.string.API_baseurl))
                 .addConverterFactory(GsonConverterFactory.create())

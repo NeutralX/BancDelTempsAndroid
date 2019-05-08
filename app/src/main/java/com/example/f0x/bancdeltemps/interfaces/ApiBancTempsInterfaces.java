@@ -23,12 +23,14 @@ public interface ApiBancTempsInterfaces {
     @GET("postsUserAnd/{filtre}")
     Call<ResponseGetPosts> getPostsByUser(@Path("filtre")int filtre);
 
+    //Torna tots els pactes dels que no és autor
     @GET("pactsUserAnd/{userId}")
     Call<ResponseGetPacts> getPactsByUser(@Path("userId")int userId);
 
     @GET("postsTitleAnd/{title}")
     Call<ResponseGetPosts> getPostsTitle (@Path("title") String title);
 
+    //Torna els pactes del que és autor
     @GET("pactsAnd/{id}")
     Call<ResponseGetPacts> getPacts(@Path("id")int id);
 

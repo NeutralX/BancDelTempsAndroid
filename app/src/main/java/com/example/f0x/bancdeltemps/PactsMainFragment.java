@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class PactsMainFragment extends Fragment {
     private FragmentTabHost mTabHost;
@@ -35,12 +36,10 @@ public class PactsMainFragment extends Fragment {
                 PactsFragment.class, null);
         mTabHost.addTab(mTabHost.newTabSpec("propis").setIndicator("Propis"),
                 PactsFragment.class, null);
-        mTabHost.addTab(mTabHost.newTabSpec("historial").setIndicator("Historial"),
-                PactsFragment.class, null);
         mTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String arg0) {
-                Log.i("***Selected Tab", "Im currently in tab with index::" + mTabHost.getCurrentTab());
+                Toast.makeText(getContext(), "Im currently in tab " + mTabHost.getCurrentTab(), Toast.LENGTH_SHORT).show();
             }
         });
         //TODO: Fer que aixo es faci desde onStart no aqui
