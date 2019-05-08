@@ -9,15 +9,19 @@ import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
 
 public class DetallPost extends AppCompatActivity {
 
-    public static final String EXTRA_POST = "com.f0x.banctemps.POST";
-    public Post postRebut;
-    public TextView datePost,locationPost,titlePost,descPost,userName;
+    private static final String EXTRA_POST = "com.f0x.banctemps.POST";
+    private static final String EXTRA_PROPIS = "com.f0x.banctemps.PROPIS";
+    private Post postRebut;
+    private TextView datePost,locationPost,titlePost,descPost,userName;
+    public Button reportarButton, pactarButton;
+    private boolean propis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,16 +32,24 @@ public class DetallPost extends AppCompatActivity {
         titlePost = (TextView) findViewById(R.id.textViewDetallTitle);
         descPost = (TextView) findViewById(R.id.textViewDetallDesc);
         userName = (TextView) findViewById(R.id.textViewDetallName);
+        reportarButton = (Button) findViewById(R.id.buttonReportPost);
+        pactarButton = findViewById(R.id.buttonProposta);
 
         descPost.setMovementMethod(new ScrollingMovementMethod());
 
         postRebut = (Post) getIntent().getSerializableExtra(EXTRA_POST);
+        propis = (boolean) getIntent().getSerializableExtra(EXTRA_PROPIS);
 
         datePost.setText(postRebut.getDateCreated());
         locationPost.setText(postRebut.getLocation());
         titlePost.setText(postRebut.getTitle());
         descPost.setText(postRebut.getDescription());
         userName.setText(postRebut.getUser().getName() + " " + postRebut.getUser().getLastName());
+
+        if(propis){
+            pactarButton.setVisibility(View.INVISIBLE);
+            reportarButton.setVisibility(View.INVISIBLE);
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
