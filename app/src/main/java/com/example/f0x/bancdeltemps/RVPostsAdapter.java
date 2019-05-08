@@ -31,13 +31,16 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     }
 
     //Constructor
-    public static final String EXTRA_POST = "com.f0x.banctemps.POST";
+    private static final String EXTRA_POST = "com.f0x.banctemps.POST";
+    private static final String EXTRA_PROPIS = "com.f0x.banctemps.PROPIS";
     List<Post> posts;
     Context mContext;
+    boolean propis;
 
-    public RVPostsAdapter(Context mContext, List<Post> posts){
+    public RVPostsAdapter(Context mContext, List<Post> posts, boolean Propis){
         this.posts = posts;
         this.mContext = mContext;
+        this.propis = Propis;
     }
 
     //S'han de sobreescriure tres mètodes abstractes a ReccylerView.Adapter:
@@ -68,6 +71,7 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
             public void onClick(View v){
                 Intent intent = new Intent(mContext, DetallPost.class);
                 intent.putExtra(EXTRA_POST, posts.get(i));
+                intent.putExtra(EXTRA_PROPIS, propis);
                 mContext.startActivity(intent);
             }
         });

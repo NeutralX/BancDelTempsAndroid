@@ -84,6 +84,20 @@ public class Post implements Serializable {
         this.hours = hours;
     }
 
+    public Post(User user, String dateCreated, String dateFinished, String description, String location, String title, long userIdUser, long categoryIdCategory, boolean active, long hours) {
+        super();
+        this.user = user;
+        this.dateCreated = dateCreated;
+        this.dateFinished = dateFinished;
+        this.description = description;
+        this.location = location;
+        this.title = title;
+        this.userIdUser = userIdUser;
+        this.categoryIdCategory = categoryIdCategory;
+        this.active = active;
+        this.hours = hours;
+    }
+
     public String get$id() {
         return $id;
     }

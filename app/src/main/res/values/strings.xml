@@ -1,6 +1,6 @@
 <resources >
 	<string name="app_name" >BancDelTemps</string >
-	<string name="API_baseurl" >http://172.16.12.10:45455/api/</string >
+	<string name="API_baseurl" >http://172.16.12.18:45455/api/</string >
 
 	<string name="navigation_drawer_open" >Open navigation drawer</string >
 	<string name="navigation_drawer_close" >Close navigation drawer</string >
@@ -14,6 +14,15 @@
 		<item >Sense especificar</item >
 	</string-array >
 
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment" >Hello blank fragment</string >
+	<string-array name="array_categories" >
+		<item >Cuina</item >
+		<item >Jardineria</item >
+		<item >Bricolatge</item >
+		<item >Informàtica</item >
+		<item >Electrònica</item >
+		<item >Esport</item >
+		<item >Mecànica</item >
+		<item >Llar</item >
+		<item >Altres</item >
+	</string-array >
 </resources >

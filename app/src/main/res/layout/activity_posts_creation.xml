@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context=".PostsCreationActivity" >
+
+	<android.support.design.widget.AppBarLayout
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:theme="@style/AppTheme.AppBarOverlay" >
+
+	<android.support.v7.widget.Toolbar
+			android:id="@+id/toolbarPostsCreation"
+			android:layout_width="match_parent"
+			android:layout_height="?attr/actionBarSize"
+			android:background="?attr/colorPrimary"
+			app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+	</android.support.design.widget.AppBarLayout >
+
+
+	<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_margin="10dp" >
+		<TextView
+				android:text="Title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" android:id="@+id/tvPostCreationTitle" android:textSize="24sp" />
+		<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textPersonName"
+				android:hint="Busco niñera a tiempo parcial"
+				android:ems="10"
+				android:id="@+id/etPostCreationTitle" />
+		<TextView
+				android:text="Category"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" android:id="@+id/tvPostCreationCategory" android:textSize="24sp" />
+		<com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" android:id="@+id/spinnerPostCreationCategories"
+				android:hint="Jardineria"
+		/>
+		<TextView
+				android:text="Location"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" android:id="@+id/tvPostCreationLocation" android:textSize="24sp" />
+		<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textPersonName"
+				android:hint="Granollers"
+				android:ems="10"
+				android:id="@+id/etPostCreationLocation" />
+		<TextView
+				android:text="Description"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" android:id="@+id/tvPostCreationDescription"
+				android:textSize="24sp" />
+		<EditText
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textMultiLine"
+				android:hint="Necesito una niñera/canguro. Para los días martes y viernes después del cole. Sería recogerlo a las 18:00 del cole, llevarlo a casa que se duche y de ser posible que cene. Martes de 18:00 a 20:00 y viernes de 18:00 a 21:00 "
+				android:ems="10"
+				android:id="@+id/etPostCreationDescription" />
+
+		<Space
+				android:layout_width="match_parent"
+				android:layout_height="180dp" />
+		<Button
+				android:text="Crear Post"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:id="@+id/button" android:layout_gravity="center"/>
+
+	</LinearLayout >
+
+</LinearLayout >

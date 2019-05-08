@@ -153,7 +153,7 @@ public class PostsPropisFragment extends Fragment {
                 if (response.code()== HttpURLConnection.HTTP_OK){
 
                     List<Post> posts = response.body().getPosts();
-                    RVPostsAdapter postsAdapter = new RVPostsAdapter(getContext(),posts);
+                    RVPostsAdapter postsAdapter = new RVPostsAdapter(getContext(),posts, true);
 
                     rvPosts.setAdapter(postsAdapter);
 
