@@ -1,5 +1,6 @@
 package com.example.f0x.bancdeltemps;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -8,13 +9,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.*;
 import com.example.f0x.bancdeltemps.classes.Pact;
 import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
+import com.example.f0x.bancdeltemps.responses.ResponseCrearPost;
 import com.example.f0x.bancdeltemps.responses.ResponseGetPacts;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import retrofit2.Call;
@@ -37,7 +36,7 @@ public class PostsCreationActivity extends AppCompatActivity {
 
     final DateFormat formatw = new SimpleDateFormat("dd-MM-yyyy");
     EditText etDescription,etlocation, etTitle;
-    MaterialBetterSpinner categoriesSpinner;
+    Spinner categoriesSpinner;
     int categoryId;
     String categorySelected;
 
@@ -49,7 +48,7 @@ public class PostsCreationActivity extends AppCompatActivity {
         Resources res = getResources();
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, res.getStringArray(R.array.array_categories));
-        categoriesSpinner = (MaterialBetterSpinner) findViewById(R.id.spinnerPostCreationCategories);
+        categoriesSpinner = (Spinner) findViewById(R.id.spinnerPostCreationCategories);
 
         etDescription = (EditText) findViewById(R.id.etPostCreationDescription);
         etlocation = (EditText) findViewById(R.id.etPostCreationLocation);
@@ -57,29 +56,17 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         categoriesSpinner.setAdapter(arrayAdapter);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPostsCreation);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-                categorySelected = arg0.getSelectedItem().toString();
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-
     }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -102,24 +89,27 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         getIdCategory(view);
 
-        Call<Integer> peticioCreacioPost = apiService.createPost(new Post(GLOBAL_User,dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0));
+        Call<ResponseCrearPost> peticioCreacioPost = apiService.createPost(new Post(GLOBAL_User,dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0));
 
-        peticioCreacioPost.enqueue(new Callback<Integer>() {
+        peticioCreacioPost.enqueue(new Callback<ResponseCrearPost>() {
 
 
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
+            public void onResponse(Call<ResponseCrearPost> call, Response<ResponseCrearPost> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
 
-                    String idPost = response.body().toString();
+                    String idPost = response.body().getValue().toString();
+                    if(idPost != null){
+                        finish();
+                    }
 
                 }
             }
 
             // Si peta la connexió a Internet.
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-                Toast.makeText(getParent(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ResponseCrearPost> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -132,24 +122,25 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
 
-        Call<Integer> peticioCategoryId = apiService.getCategoryId(categorySelected);
+        categorySelected = categoriesSpinner.getSelectedItem().toString();
+        Call<ResponseCrearPost> peticioCategoryId = apiService.getCategoryId(categorySelected);
 
-        peticioCategoryId.enqueue(new Callback<Integer>() {
+        peticioCategoryId.enqueue(new Callback<ResponseCrearPost>() {
 
 
             @Override
-            public void onResponse(Call<Integer> call, Response<Integer> response) {
+            public void onResponse(Call<ResponseCrearPost> call, Response<ResponseCrearPost> response) {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
 
-                    categoryId = response.body();
+                    categoryId = response.body().getValue();
 
                 }
             }
 
             // Si peta la connexió a Internet.
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
-                Toast.makeText(getParent(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<ResponseCrearPost> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
             }
         });
     }
