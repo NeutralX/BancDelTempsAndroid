@@ -26,59 +26,76 @@
 	<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_margin="10dp" >
-		<TextView
-				android:text="Title"
+			android:layout_height="match_parent" >
+
+		<android.support.design.widget.TextInputLayout
+				android:layout_marginTop="20dp"
+				android:id="@+id/text_input_layout_titlePost"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" android:id="@+id/tvPostCreationTitle" android:textSize="24sp" />
-		<EditText
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:inputType="textPersonName"
-				android:hint="Busco niñera a tiempo parcial"
-				android:ems="10"
-				android:id="@+id/etPostCreationTitle" />
+				android:layout_height="wrap_content">
+
+			<EditText
+					android:id="@+id/etPostCreationTitle"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textPersonName"
+					android:hint="Title"
+					android:ems="10"
+					android:layout_margin="10dp"/>
+		</android.support.design.widget.TextInputLayout>
+
 		<TextView
 				android:text="Category"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" android:id="@+id/tvPostCreationCategory" android:textSize="24sp" />
-		<com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+				android:layout_height="wrap_content" android:id="@+id/tvPostCreationCategory" android:textSize="18sp"
+				android:layout_marginStart="15dp"/>
+		<Spinner
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content" android:id="@+id/spinnerPostCreationCategories"
-				android:hint="Jardineria"
-		/>
-		<TextView
-				android:text="Location"
+				android:hint="Jardineria" />
+
+		<android.support.design.widget.TextInputLayout
+				android:layout_marginTop="20dp"
+				android:id="@+id/text_input_layout_locationPost"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" android:id="@+id/tvPostCreationLocation" android:textSize="24sp" />
-		<EditText
+				android:layout_height="wrap_content">
+
+			<EditText
+					android:id="@+id/etPostCreationLocation"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textPersonName"
+					android:hint="Title"
+					android:ems="10"
+					android:layout_margin="10dp"/>
+		</android.support.design.widget.TextInputLayout>
+
+		<android.support.design.widget.TextInputLayout
+				android:layout_marginTop="20dp"
+				android:id="@+id/text_input_layout_descriptionPost"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:inputType="textPersonName"
-				android:hint="Granollers"
-				android:ems="10"
-				android:id="@+id/etPostCreationLocation" />
-		<TextView
-				android:text="Description"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content" android:id="@+id/tvPostCreationDescription"
-				android:textSize="24sp" />
-		<EditText
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:inputType="textMultiLine"
-				android:hint="Necesito una niñera/canguro. Para los días martes y viernes después del cole. Sería recogerlo a las 18:00 del cole, llevarlo a casa que se duche y de ser posible que cene. Martes de 18:00 a 20:00 y viernes de 18:00 a 21:00 "
-				android:ems="10"
-				android:id="@+id/etPostCreationDescription" />
+				android:layout_height="wrap_content">
+
+			<EditText
+					android:id="@+id/etPostCreationDescription"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:inputType="textMultiLine"
+					android:hint="Title"
+					android:ems="10"
+					android:layout_margin="10dp"/>
+		</android.support.design.widget.TextInputLayout>
+
 
 		<Space
 				android:layout_width="match_parent"
-				android:layout_height="180dp" />
+				android:layout_height="150dp" />
 		<Button
 				android:text="Crear Post"
 				android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:id="@+id/button" android:layout_gravity="center"/>
+				android:layout_height="wrap_content" android:id="@+id/buttonCreatePost"
+				android:layout_gravity="center"
+				android:onClick="createPost"/>
 
 	</LinearLayout >
 

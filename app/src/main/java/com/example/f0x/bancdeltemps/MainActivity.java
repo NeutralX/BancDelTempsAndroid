@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.example.f0x.bancdeltemps.classes.User;
+import ru.dimorinny.floatingtextbutton.FloatingTextButton;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -27,7 +28,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         GLOBAL_User = (User) getIntent().getSerializableExtra(Intent.EXTRA_USER);
 
-
+        FloatingTextButton myFab = (FloatingTextButton) findViewById(R.id.action_button);
+        myFab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                createPost(v);
+            }
+        });
 
         final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -133,5 +139,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void createPost(View v){
+        Intent main = new Intent(MainActivity.this, PostsCreationActivity.class);
+        startActivity(main);
     }
 }
