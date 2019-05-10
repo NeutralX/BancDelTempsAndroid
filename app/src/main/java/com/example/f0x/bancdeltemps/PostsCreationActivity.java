@@ -56,6 +56,24 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         categoriesSpinner.setAdapter(arrayAdapter);
 
+        categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                Object item = adapterView.getItemAtPosition(position);
+                if (item != null) {
+                    getIdCategory(view);
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarPostsCreation);
         setSupportActionBar(toolbar);
 
@@ -87,9 +105,8 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         String dateCreated = formatw.format(Calendar.getInstance().getTime());
 
-        getIdCategory(view);
-
-        Call<ResponseCrearPost> peticioCreacioPost = apiService.createPost(new Post(GLOBAL_User,dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0));
+        Post p = new Post(GLOBAL_User,dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0);
+        Call<ResponseCrearPost> peticioCreacioPost = apiService.createPost(p);
 
         peticioCreacioPost.enqueue(new Callback<ResponseCrearPost>() {
 
