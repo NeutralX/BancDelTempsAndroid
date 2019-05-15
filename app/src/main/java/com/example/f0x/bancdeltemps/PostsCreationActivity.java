@@ -105,7 +105,7 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         String dateCreated = formatw.format(Calendar.getInstance().getTime());
 
-        Post p = new Post(GLOBAL_User,dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0);
+        Post p = new Post(dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0);
         Call<ResponseCrearPost> peticioCreacioPost = apiService.createPost(p);
 
         peticioCreacioPost.enqueue(new Callback<ResponseCrearPost>() {

@@ -38,8 +38,8 @@ public interface ApiBancTempsInterfaces {
     @POST("postPost")
     Call<ResponseCrearPost> createPost(@Body Post post);
 
-    @POST("insertReport")
-    Call<ResponseCrearPost> sendReport(@Body Report report);
+   // @POST("insertReport")
+    //Call<ResponseCrearPost> sendReport(@Body Report report);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);
