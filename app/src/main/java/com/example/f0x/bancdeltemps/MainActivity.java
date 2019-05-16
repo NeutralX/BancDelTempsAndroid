@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                                 fragmentTransaction = true;
                                 break;
                             case R.id.nav_pacts:
-                                if(fragment == null) fragment =  new PactsFragment();
+                                if(fragment == null) fragment =  new PactsMainFragment();
                                 fragmentTransaction = true;
                             case R.id.nav_options:
                                 if(fragment == null) fragment =  new PactsMainFragment();

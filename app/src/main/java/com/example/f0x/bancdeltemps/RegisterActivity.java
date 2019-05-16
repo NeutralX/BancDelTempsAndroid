@@ -24,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.example.f0x.bancdeltemps.LoginActivity.EncriptarContrassenya;
 import static com.google.gson.internal.bind.util.ISO8601Utils.format;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -83,6 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         String gender = mSpinnerRegister.getSelectedItem().toString();
         String registerDate = fullDate.substring(0, 10);
         String birthDate = formatw.format(dateOfBirthDATE);
+        String passEncriptada = EncriptarContrassenya(pass, "Uptown girl");
 
         boolean empty = (!name.isEmpty() && !lastName.isEmpty() && !email.isEmpty() && !pass.isEmpty()
                 && !gender.isEmpty() && !registerDate.isEmpty());
@@ -97,7 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
             ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
 
             Call<ResponseRegister> peticioLogin = apiService.doRegistre(new User(name, lastName, email, registerDate,
-                    0, pass, birthDate, gender, "path"));
+                    0, passEncriptada, birthDate, gender, "path"));
 
             peticioLogin.enqueue(new Callback<ResponseRegister>() {
 

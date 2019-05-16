@@ -20,27 +20,30 @@ public interface ApiBancTempsInterfaces {
     Call<ResponseGetPosts> getPosts();
 
     @GET("postsUserAnd/{filtre}")
-    Call<ResponseGetPosts> getPostsByUser(@Path("filtre")int filtre);
+    Call<ResponseGetPosts> getPostsByUser(@Path("filtre") int filtre);
 
     //Torna tots els pactes dels que no és autor
     @GET("pactsUserAnd/{userId}")
-    Call<ResponseGetPacts> getPactsByUser(@Path("userId")int userId);
+    Call<ResponseGetPacts> getPactsByUser(@Path("userId") int userId);
 
     @GET("postsTitleAnd/{title}")
-    Call<ResponseGetPosts> getPostsTitle (@Path("title") String title);
+    Call<ResponseGetPosts> getPostsTitle(@Path("title") String title);
 
     //Torna els pactes del que és autor
     @GET("pactsAnd/{id}")
-    Call<ResponseGetPacts> getPacts(@Path("id")int id);
+    Call<ResponseGetPacts> getPacts(@Path("id") int id);
 
     @GET("categoryId/{nom}")
-    Call<ResponseCrearPost> getCategoryId(@Path("nom")String nom);
+    Call<ResponseCrearPost> getCategoryId(@Path("nom") String nom);
 
     @POST("postPost")
     Call<ResponseCrearPost> createPost(@Body Post post);
 
-    @POST("insertReport")
-    Call<ResponseCrearPost> sendReport(@Body Report report);
+    //Aconseguir user per ID per a fer un pacte
+    @GET("userSi/{id}")
+    Call<ResponseLogin> userPerId(@Path("id") int id);
+    // @POST("insertReport")
+    //Call<ResponseCrearPost> sendReport(@Body Report report);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

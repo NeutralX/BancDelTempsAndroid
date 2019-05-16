@@ -17,6 +17,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
+import com.example.f0x.bancdeltemps.classes.User;
+import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
+import com.example.f0x.bancdeltemps.responses.ResponseLogin;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.net.HttpURLConnection;
 import com.example.f0x.bancdeltemps.classes.Report;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
 import com.example.f0x.bancdeltemps.responses.ResponseCrearPost;
@@ -40,6 +50,7 @@ public class DetallPost extends AppCompatActivity {
     public Button reportarButton, pactarButton;
     private boolean propis;
     private String m_Text = "";
+    static String nomCognomUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +74,8 @@ public class DetallPost extends AppCompatActivity {
         locationPost.setText(postRebut.getLocation());
         titlePost.setText(postRebut.getTitle());
         descPost.setText(postRebut.getDescription());
-        userName.setText(postRebut.getUser().getName() + " " + postRebut.getUser().getLastName());
+        buscarUser((int) postRebut.getUserIdUser());
+        userName.setText(nomCognomUser);
 
         if (propis) {
             pactarButton.setVisibility(View.INVISIBLE);
@@ -155,6 +167,34 @@ public class DetallPost extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseCrearPost> call, Throwable t) {
                 Toast.makeText(getBaseContext(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void buscarUser(int id) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.API_baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
+
+        Call<ResponseLogin> peticioLogin = apiService.userPerId(id);
+
+        peticioLogin.enqueue(new Callback<ResponseLogin>() {
+
+            @Override
+            public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
+                if (response.code() == HttpURLConnection.HTTP_OK && response.body() != null) {
+                    nomCognomUser = response.body().getName() + " " + response.body().getLastName();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseLogin> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
             }
         });
     }
