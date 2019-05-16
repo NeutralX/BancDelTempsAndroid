@@ -10,12 +10,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.classes.User;
 import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
@@ -111,22 +109,57 @@ public class DetallPost extends AppCompatActivity {
 
     public void showReportDialog(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Report Details");
+        builder.setTitle("Detalls report");
+        builder.setTitle("Introdueix el motiu");
 
 
         final EditText input = new EditText(this);
 
         input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        input.setSingleLine(false);
+        input.setLines(4);
+        input.setMaxLines(5);
         builder.setView(input);
 
-        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 m_Text = input.getText().toString();
                 enviarReport(m_Text);
             }
         });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
+    public void showPropostaDialog(View v){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Aceptar proposta");
+        builder.setTitle("Introdueix una descripció");
+
+
+        final EditText input = new EditText(this);
+
+        input.setSingleLine(false);
+        input.setLines(4);
+        input.setMaxLines(5);
+        input.setInputType(InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        builder.setView(input);
+
+        builder.setPositiveButton("Enviar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                m_Text = input.getText().toString();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

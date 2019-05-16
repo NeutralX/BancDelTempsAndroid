@@ -41,17 +41,17 @@
 				android:layout_height="match_parent"
 		android:layout_weight="1">
 			<TextView
-					android:text="Full Name"
+					android:text="Nom complet"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content" android:id="@+id/textViewProfileName"
 					android:layout_weight="1" />
 			<TextView
-					android:text="Location"
+					android:text="Ubicació"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content" android:id="@+id/textViewProfileEmail"
 					android:layout_weight="1" />
 			<TextView
-					android:text="Hours"
+					android:text="Hores"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content" android:id="@+id/textViewProfileHours"
 					android:layout_weight="1" />

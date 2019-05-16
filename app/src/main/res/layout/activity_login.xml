@@ -39,7 +39,7 @@
                 android:id="@+id/editTextLoginPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="Contrasenya"
                 android:layout_margin="20dp" android:inputType="textPassword"/>
     </android.support.design.widget.TextInputLayout>
     <Button
@@ -53,13 +53,13 @@
             android:layout_height="match_parent">
         <TextView
                 android:layout_marginTop="10dp"
-                android:text="New to Banc Del Temps? "
+                android:text="Nou a Banc Del Temps? "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/textViewNewHere" android:layout_weight="1"
                 android:textAlignment="textEnd"/>
         <TextView
                 android:layout_marginTop="10dp"
-                android:text="Register here"
+                android:text="Registrat aquí"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/textViewRegister" android:layout_weight="1"
                 android:textColor="@color/colorPrimaryDark" android:clickable="true"
