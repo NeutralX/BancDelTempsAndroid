@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
                     if (response.code() == HttpURLConnection.HTTP_OK && response.body() != null) {
-                        Toast.makeText(LoginActivity.this, "Login OK " + response.body().getName(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(LoginActivity.this, "Login OK " + response.body().getName(), Toast.LENGTH_SHORT).show();
                         sharedPref.edit().putString("userEmail", editTextMail.getText().toString()).apply();
                         Id_User = response.body().getIdUser();
                         User u = new User(response.body());
