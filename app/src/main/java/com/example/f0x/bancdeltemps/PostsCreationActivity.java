@@ -35,10 +35,11 @@ import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 public class PostsCreationActivity extends AppCompatActivity {
 
     final DateFormat formatw = new SimpleDateFormat("dd-MM-yyyy");
-    EditText etDescription,etlocation, etTitle;
-    Spinner categoriesSpinner;
+    EditText etDescription, etlocation, etTitle;
+    Spinner categoriesSpinner, horesSpinner;
     int categoryId;
     String categorySelected;
+    int hores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,15 @@ public class PostsCreationActivity extends AppCompatActivity {
                 android.R.layout.simple_dropdown_item_1line, res.getStringArray(R.array.array_categories));
         categoriesSpinner = (Spinner) findViewById(R.id.spinnerPostCreationCategories);
 
+        ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, res.getStringArray(R.array.array_hores));
+        horesSpinner = (Spinner) findViewById(R.id.spinnerPostCreationHores);
+
         etDescription = (EditText) findViewById(R.id.etPostCreationDescription);
         etlocation = (EditText) findViewById(R.id.etPostCreationLocation);
         etTitle = (EditText) findViewById(R.id.etPostCreationTitle);
 
+        horesSpinner.setAdapter(arrayAdapter2);
         categoriesSpinner.setAdapter(arrayAdapter);
 
         categoriesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -67,9 +73,28 @@ public class PostsCreationActivity extends AppCompatActivity {
                 }
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
                 // TODO Auto-generated method stub
+
+            }
+        });
+        horesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view,
+                                       int position, long id) {
+                Object item = adapterView.getItemAtPosition(position);
+                if (item != null) {
+                    hores = Integer.parseInt(item.toString());
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                hores = 1;
 
             }
         });
@@ -84,7 +109,8 @@ public class PostsCreationActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(newBase);}
+        super.attachBaseContext(newBase);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -105,7 +131,8 @@ public class PostsCreationActivity extends AppCompatActivity {
 
         String dateCreated = formatw.format(Calendar.getInstance().getTime());
 
-        Post p = new Post(dateCreated, null, etDescription.getText().toString(),etlocation.getText().toString(),etTitle.getText().toString(),GLOBAL_User.getIdUser(),categoryId,true,0);
+        Post p = new Post(dateCreated, null, etDescription.getText().toString(), etlocation.getText().toString(),
+                etTitle.getText().toString(), GLOBAL_User.getIdUser(), categoryId, true, hores);
         Call<ResponseCrearPost> peticioCreacioPost = apiService.createPost(p);
 
         peticioCreacioPost.enqueue(new Callback<ResponseCrearPost>() {
@@ -116,7 +143,7 @@ public class PostsCreationActivity extends AppCompatActivity {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
 
                     String idPost = response.body().getValue().toString();
-                    if(idPost != null){
+                    if (idPost != null) {
                         finish();
                     }
 
