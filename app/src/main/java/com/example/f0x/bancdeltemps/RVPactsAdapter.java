@@ -89,6 +89,35 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
         postViewHolder.Date.setText(pacts.get(i).getDateCreated());
         //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
+        switch ((int) pacts.get(i).getPost().getCategoryIdCategory()) {
+            case 1:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_cuinafinal);
+                break;
+            case 2:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_jardineria);
+                break;
+            case 4:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icon_bricolatge);
+                break;
+            case 5:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.categoria_informatica);
+                break;
+            case 7:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_electronica);
+                break;
+            case 11:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_esport);
+                break;
+            case 12:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_mecanica);
+                break;
+            case 13:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_llar);
+                break;
+            case 14:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_altresfinal);
+                break;
+        }
         postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

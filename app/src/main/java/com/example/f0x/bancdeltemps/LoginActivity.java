@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         main.putExtra(Intent.EXTRA_USER, u);
                         startActivity(main);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Wrong user/password ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Error en el correo o contrasenya ", Toast.LENGTH_SHORT).show();
                     }
                 }
 
