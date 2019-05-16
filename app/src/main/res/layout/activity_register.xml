@@ -18,7 +18,7 @@
                       android:orientation="vertical"
                       android:gravity="center_horizontal">
             <TextView
-                    android:text="Register"
+                    android:text="Registre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -34,7 +34,7 @@
                         android:id="@+id/editTextRegisterName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name"
+                        android:hint="Nom"
                         android:layout_margin="10dp"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -47,7 +47,7 @@
                         android:id="@+id/editTextRegisterLastName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Last name"
+                        android:hint="Cognoms"
                         android:layout_margin="10dp"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -74,7 +74,7 @@
                         android:id="@+id/editTextRegisterPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Password"
+                        android:hint="Contrsenya"
                         android:layout_margin="10dp"
                         android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
@@ -87,7 +87,7 @@
                     android:id="@+id/spinnerRegister"
                     android:entries="@array/array_gender"/>
             <TextView
-                    android:text="Date of birth"
+                    android:text="Data de naixement"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView2"
@@ -103,7 +103,7 @@
                     android:layout_width="226dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Register"
+                    android:text="Registrar-se"
                     android:onClick="doRegister"/>
 
             <Button
@@ -111,7 +111,7 @@
                     android:layout_width="226dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Cancel"
+                    android:text="Cancel·lar"
                     android:layout_marginBottom="30dp"
                     android:onClick="goLogin"/>
         </LinearLayout>
