@@ -1,6 +1,6 @@
 <resources >
 	<string name="app_name" >BancDelTemps</string >
-	<string name="API_baseurl" >http://192.168.1.142:45455/api/</string >
+	<string name="API_baseurl" >http://192.168.1.40:45455/api/</string >
 
 	<string name="navigation_drawer_open" >Open navigation drawer</string >
 	<string name="navigation_drawer_close" >Close navigation drawer</string >

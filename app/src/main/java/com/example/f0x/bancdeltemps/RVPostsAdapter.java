@@ -13,7 +13,7 @@ import com.example.f0x.bancdeltemps.classes.Post;
 
 import java.util.List;
 
-public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostViewHolder>{
+public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostViewHolder> {
 
     //Hem de crear una classe interna basada en RecyclerView.ViewHolder.
 
@@ -27,6 +27,7 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
             cv = itemView.findViewById(R.id.cardViewId);
             Title = itemView.findViewById(R.id.titlePost);
             CategoryImage = itemView.findViewById(R.id.imageCategoryPost);
+            //CategoryImage.setBackgroundResource(R.drawable.categoria_informatica);
         }
     }
 
@@ -37,7 +38,7 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     Context mContext;
     boolean propis;
 
-    public RVPostsAdapter(Context mContext, List<Post> posts, boolean Propis){
+    public RVPostsAdapter(Context mContext, List<Post> posts, boolean Propis) {
         this.posts = posts;
         this.mContext = mContext;
         this.propis = Propis;
@@ -66,9 +67,38 @@ public class RVPostsAdapter extends RecyclerView.Adapter<RVPostsAdapter.PostView
     @Override
     public void onBindViewHolder(PostViewHolder postViewHolder, final int i) {
         postViewHolder.Title.setText(posts.get(i).getTitle());
+        switch ((int) posts.get(i).getCategoryIdCategory()) {
+            case 1:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_cuinafinal);
+                break;
+            case 2:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_jardineria);
+                break;
+            case 4:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icon_bricolatge);
+                break;
+            case 5:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.categoria_informatica);
+                break;
+            case 7:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_electronica);
+                break;
+            case 11:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_esport);
+                break;
+            case 12:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_mecanica);
+                break;
+            case 13:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_llar);
+                break;
+            case 14:
+                postViewHolder.CategoryImage.setBackgroundResource(R.drawable.icons_altresfinal);
+                break;
+        }
         postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 Intent intent = new Intent(mContext, DetallPost.class);
                 intent.putExtra(EXTRA_POST, posts.get(i));
                 intent.putExtra(EXTRA_PROPIS, propis);
