@@ -2,6 +2,7 @@ package com.example.f0x.bancdeltemps.interfaces;
 
 
 import com.example.f0x.bancdeltemps.classes.Post;
+import com.example.f0x.bancdeltemps.classes.Report;
 import com.example.f0x.bancdeltemps.classes.User;
 import com.example.f0x.bancdeltemps.responses.*;
 import retrofit2.Call;

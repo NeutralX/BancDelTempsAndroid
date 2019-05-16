@@ -1,6 +1,6 @@
 <resources >
 	<string name="app_name" >BancDelTemps</string >
-	<string name="API_baseurl" >http://172.16.12.5:45455/api/</string >
+	<string name="API_baseurl" >http://192.168.1.142:45455/api/</string >
 
 	<string name="navigation_drawer_open" >Open navigation drawer</string >
 	<string name="navigation_drawer_close" >Close navigation drawer</string >
@@ -25,4 +25,7 @@
 		<item >Llar</item >
 		<item >Altres</item >
 	</string-array >
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment" >Hello blank fragment</string >
 </resources >

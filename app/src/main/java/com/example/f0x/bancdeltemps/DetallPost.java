@@ -17,6 +17,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Post;
+import com.example.f0x.bancdeltemps.classes.Report;
+import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
+import com.example.f0x.bancdeltemps.responses.ResponseCrearPost;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import java.net.HttpURLConnection;
+import java.util.Calendar;
+
+import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 
 public class DetallPost extends AppCompatActivity {
 
@@ -98,6 +111,7 @@ public class DetallPost extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 m_Text = input.getText().toString();
+                enviarReport(m_Text);
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -109,5 +123,39 @@ public class DetallPost extends AppCompatActivity {
 
         builder.show();
 
+    }
+
+    public void enviarReport(String descripcio){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(getString(R.string.API_baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
+
+        Report report = new Report(descripcio,false,postRebut.getIdPost(),GLOBAL_User.getIdUser(),postRebut.getUserIdUser());
+        Call<ResponseCrearPost> peticioEnviarReport = apiService.sendReport(report);
+
+        peticioEnviarReport.enqueue(new Callback<ResponseCrearPost>() {
+
+
+            @Override
+            public void onResponse(Call<ResponseCrearPost> call, Response<ResponseCrearPost> response) {
+                if (response.code() == HttpURLConnection.HTTP_OK) {
+
+                    String idPost = response.body().getValue().toString();
+                    if(idPost != null){
+                        Toast.makeText(getBaseContext(), "Report enviat correctament", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            // Si peta la connexió a Internet.
+            @Override
+            public void onFailure(Call<ResponseCrearPost> call, Throwable t) {
+                Toast.makeText(getBaseContext(), "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

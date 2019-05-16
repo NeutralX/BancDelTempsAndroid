@@ -43,7 +43,7 @@
 			android:layout_height="wrap_content"
 			android:layout_gravity="bottom|center"
 			app:floating_background_color="@color/colorPrimary"
-			app:floating_left_icon="@android:drawable/ic_dialog_email"
+			app:floating_left_icon="@drawable/ic_posts"
 			app:floating_title="Crear Post"
 			app:floating_title_color="@android:color/white"
 			android:layout_marginBottom="10dp"
