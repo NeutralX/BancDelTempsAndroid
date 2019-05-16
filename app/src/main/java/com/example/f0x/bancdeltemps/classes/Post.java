@@ -98,6 +98,13 @@ public class Post implements Serializable {
         this.hours = hours;
     }
 
+    public Post(long idPost, String dateFinished, long hours) {
+        super();
+        this.idPost = idPost;
+        this.dateFinished = dateFinished;
+        this.hours = hours;
+    }
+
     public String get$id() {
         return $id;
     }

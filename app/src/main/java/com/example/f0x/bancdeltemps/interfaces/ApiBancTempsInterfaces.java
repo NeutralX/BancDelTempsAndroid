@@ -49,8 +49,8 @@ public interface ApiBancTempsInterfaces {
     @POST("insertPact")
     Call<ResponseCrearPost> sendPact(@Body Pact pact);
 
-    @POST("FinalitzarPact/id={id}&data={data}&hores={hores}")
-    Call<ResponseCrearPost> finalitzarPact(@Path("id") int id,@Path("data") String data,@Path("hores") int hores);
+    @POST("FinalitzarPact")
+    Call<ResponseCrearPost> finalitzarPact(@Body Pact pact);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

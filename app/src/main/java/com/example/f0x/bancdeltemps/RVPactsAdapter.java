@@ -2,6 +2,7 @@ package com.example.f0x.bancdeltemps;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -83,14 +84,20 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
     //3: onBindViewHolder especifica el contingut de cada element del RV. Aquesta funció és molt similar al
     //getView del adapter del ListView. Aquí és on fiquem els valors al nom, edat i foto de cada CardView.
     @Override
-    public void onBindViewHolder(PactViewHolder postViewHolder, int i) {
+    public void onBindViewHolder(PactViewHolder postViewHolder, final int i) {
         postViewHolder.Title.setText(pacts.get(i).getTitle());
         postViewHolder.Date.setText(pacts.get(i).getDateCreated());
         //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
-        if(aceptats){
-            showAceptatDialog(pacts.get(i));
-        }
+        postViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(aceptats){
+                    showAceptatDialog(pacts.get(i));
+                }
+            }
+        });
+
 
     }
 
@@ -125,7 +132,8 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
 
         String dateCreated = formatw.format(Calendar.getInstance().getTime());
 
-        Call<ResponseCrearPost> peticioEnviarReport = apiService.finalitzarPact(p.getIdPact(),dateCreated,p.getHours());
+        Pact pact = new Pact(p.getIdPact(),dateCreated,p.getHours());
+        Call<ResponseCrearPost> peticioEnviarReport = apiService.finalitzarPact(pact);
 
         peticioEnviarReport.enqueue(new Callback<ResponseCrearPost>() {
 
@@ -136,7 +144,7 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
 
                     String idPost = response.body().getValue().toString();
                     if(idPost != null){
-                        Toast.makeText(mContext, "Report finalitzat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, "Pacte finalitzat", Toast.LENGTH_SHORT).show();
                     }
 
                 }

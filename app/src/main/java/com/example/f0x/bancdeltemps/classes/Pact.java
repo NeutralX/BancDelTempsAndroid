@@ -85,6 +85,13 @@ public class Pact {
         this.hours = hours;
     }
 
+    public Pact(int idPact, String dateFinished, int hours) {
+        super();
+        this.idPact = idPact;
+        this.dateFinished = dateFinished;
+        this.hours = hours;
+    }
+
     public String get$id() {
         return $id;
     }
