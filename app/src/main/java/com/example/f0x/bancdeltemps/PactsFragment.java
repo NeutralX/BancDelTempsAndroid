@@ -154,7 +154,7 @@ public class PactsFragment extends Fragment {
                 if (response.code() == HttpURLConnection.HTTP_OK) {
 
                     List<Pact> posts = response.body().getPacts();
-                    RVPactsAdapter postsAdapter = new RVPactsAdapter(getContext(), posts);
+                    RVPactsAdapter postsAdapter = new RVPactsAdapter(getContext(), posts, true);
 
                     rvPacts.setAdapter(postsAdapter);
 

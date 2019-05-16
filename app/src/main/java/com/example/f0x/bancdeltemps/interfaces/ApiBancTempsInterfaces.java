@@ -1,6 +1,7 @@
 package com.example.f0x.bancdeltemps.interfaces;
 
 
+import com.example.f0x.bancdeltemps.classes.Pact;
 import com.example.f0x.bancdeltemps.classes.Post;
 import com.example.f0x.bancdeltemps.classes.Report;
 import com.example.f0x.bancdeltemps.classes.User;
@@ -44,6 +45,12 @@ public interface ApiBancTempsInterfaces {
     Call<ResponseLogin> userPerId(@Path("id") int id);
      @POST("insertReport")
     Call<ResponseCrearPost> sendReport(@Body Report report);
+
+    @POST("insertPact")
+    Call<ResponseCrearPost> sendPact(@Body Pact pact);
+
+    @POST("FinalitzarPact/id={id}&data={data}&hores={hores}")
+    Call<ResponseCrearPost> finalitzarPact(@Path("id") int id,@Path("data") String data,@Path("hores") int hores);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);

@@ -1,17 +1,36 @@
 package com.example.f0x.bancdeltemps;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.example.f0x.bancdeltemps.classes.Pact;
 import com.example.f0x.bancdeltemps.classes.Post;
+import com.example.f0x.bancdeltemps.classes.Report;
+import com.example.f0x.bancdeltemps.interfaces.ApiBancTempsInterfaces;
+import com.example.f0x.bancdeltemps.responses.ResponseCrearPost;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.net.HttpURLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+
+import static com.example.f0x.bancdeltemps.MainActivity.GLOBAL_User;
 
 public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactViewHolder>{
 
@@ -35,8 +54,12 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
     //Constructor
     List<Pact> pacts;
     Context mContext;
-    public RVPactsAdapter(Context mContext,List<Pact> pacts){
+    Boolean aceptats;
+    final DateFormat formatw = new SimpleDateFormat("dd-MM-yyyy");
+    public RVPactsAdapter(Context mContext,List<Pact> pacts, boolean aceptats){
+        this.mContext = mContext;
         this.pacts = pacts;
+        this.aceptats = aceptats;
     }
 
     //S'han de sobreescriure tres mètodes abstractes a ReccylerView.Adapter:
@@ -65,7 +88,66 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
         postViewHolder.Date.setText(pacts.get(i).getDateCreated());
         //postViewHolder.CategoryImage.setImageAlpha(R.drawable.categoria_informatica2);
         //postViewHolder.Brand.setText(bycicles.get(i).brand);
+        if(aceptats){
+            showAceptatDialog(pacts.get(i));
+        }
 
+    }
+
+    public void showAceptatDialog( final Pact p){
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("Pacte finalitzat?");
+
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finalitzarPacte(p);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
+    public void finalitzarPacte(Pact p){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(mContext.getString(R.string.API_baseurl))
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ApiBancTempsInterfaces apiService = retrofit.create(ApiBancTempsInterfaces.class);
+
+        String dateCreated = formatw.format(Calendar.getInstance().getTime());
+
+        Call<ResponseCrearPost> peticioEnviarReport = apiService.finalitzarPact(p.getIdPact(),dateCreated,p.getHours());
+
+        peticioEnviarReport.enqueue(new Callback<ResponseCrearPost>() {
+
+
+            @Override
+            public void onResponse(Call<ResponseCrearPost> call, Response<ResponseCrearPost> response) {
+                if (response.code() == HttpURLConnection.HTTP_OK) {
+
+                    String idPost = response.body().getValue().toString();
+                    if(idPost != null){
+                        Toast.makeText(mContext, "Report finalitzat", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+
+            // Si peta la connexió a Internet.
+            @Override
+            public void onFailure(Call<ResponseCrearPost> call, Throwable t) {
+                Toast.makeText(mContext, "Problema amb la connexió.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

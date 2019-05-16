@@ -73,6 +73,18 @@ public class Pact {
         this.hours = hours;
     }
 
+    public Pact(String dateCreated, String dateFinished, String description, String title, Integer postsIdPost, Integer idAuthor, Integer idNoAuthor, Integer hours) {
+        super();
+        this.dateCreated = dateCreated;
+        this.dateFinished = dateFinished;
+        this.description = description;
+        this.title = title;
+        this.postsIdPost = postsIdPost;
+        this.idAuthor = idAuthor;
+        this.idNoAuthor = idNoAuthor;
+        this.hours = hours;
+    }
+
     public String get$id() {
         return $id;
     }
