@@ -48,7 +48,7 @@ public class RVPactsAdapter extends RecyclerView.Adapter<RVPactsAdapter.PactView
             cv = itemView.findViewById(R.id.cardViewIdPacts);
             Title = itemView.findViewById(R.id.titlePacts);
             Date = itemView.findViewById(R.id.datePacts);
-            CategoryImage = itemView.findViewById(R.id.imageCategoryPacts);
+            //CategoryImage = itemView.findViewById(R.id.imageCategoryPacts);
         }
     }
 
