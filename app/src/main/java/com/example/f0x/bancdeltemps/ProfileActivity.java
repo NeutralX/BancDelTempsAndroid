@@ -34,11 +34,11 @@ public class ProfileActivity extends AppCompatActivity {
 
         tvName.setText(GLOBAL_User.getName() + " " + GLOBAL_User.getLastName());
         tvEmail.setText(GLOBAL_User.getEmail());
-        tvHours.setText("Hours: " + GLOBAL_User.getTimeHours());
+        tvHours.setText("Hores: " + GLOBAL_User.getTimeHours());
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Posts"));
-        tabLayout.addTab(tabLayout.newTab().setText("Pacts"));
+        tabLayout.addTab(tabLayout.newTab().setText("Anuncis"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pactes"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

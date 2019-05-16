@@ -42,8 +42,8 @@ public interface ApiBancTempsInterfaces {
     //Aconseguir user per ID per a fer un pacte
     @GET("userSi/{id}")
     Call<ResponseLogin> userPerId(@Path("id") int id);
-    // @POST("insertReport")
-    //Call<ResponseCrearPost> sendReport(@Body Report report);
+     @POST("insertReport")
+    Call<ResponseCrearPost> sendReport(@Body Report report);
 
 //    @GET("taller/lista")
 //    Call<ResponseLlistatTallers> getTallers(@Query("X-API-KEY") String key);
